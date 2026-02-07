@@ -50,8 +50,8 @@ export default function Footer() {
           <p className="text-gray-400">
             PT Gatluak - TechCare<br />
             Juba, South Sudan<br />
-            Email: <a href="mailto:ptgatluakb@gmail.com" className="hover:text-amber-400 transition">ptgatluak@example.com</a><br />
-            Phone: <a href="tel:+211900000000" className="hover:text-amber-400 transition">+211 900 000 000</a>
+            Email: <a href="mailto:ptgatluakb@gmail.com" className="hover:text-amber-400 transition">ptgatluakb@gmail.com</a><br />
+            Phone: <a href="tel:+211900000000" className="hover:text-amber-400 transition">+211 923 482 721</a>
           </p>
         </div>
 

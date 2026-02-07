@@ -7,6 +7,7 @@ import Projects from "./components/Projects.jsx";
 import Frequently from "./components/Frequently.jsx"; 
 import ContactForm from "./components/ContactForm.jsx";  // ✅ Corrected
 import Footer from "./components/footer.jsx";  
+import Testimonials from "./components/testimonials.jsx";  
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Skills />
       <Projects />
       <Frequently /> 
+      <Testimonials />
       <ContactForm />
       <Footer />
     </div>

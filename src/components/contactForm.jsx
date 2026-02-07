@@ -31,8 +31,17 @@ export default function ContactForm() {
       return;
     }
 
-    // Fake send (replace with real backend)
-    console.log(formData);
+    // Construct mailto link
+    const subject = encodeURIComponent(`Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:ptgatluakb@gmail.com?subject=${subject}&body=${body}`;
+
+    // Open user's default email client
+    window.location.href = mailtoLink;
+
+    // Show success message
     setSuccess(true);
     setFormData({ name: "", email: "", message: "" });
     setTimeout(() => setSuccess(false), 3000);
