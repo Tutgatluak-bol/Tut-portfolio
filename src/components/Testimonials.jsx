@@ -1,41 +1,33 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Import local images
+import ogooTom from "../assets/icons/ogoo-tom.jpg";
+import johnsonAchuk from "../assets/icons/johnson-achuk.jpg";
+import biarThon from "../assets/icons/biar-thon.jpg";
+
+// Testimonials data
 const testimonials = [
   {
     name: "Johnson Achuk",
     role: "CEO, Pixelpulse",
     message:
       "Working with PT Gatluak was a game-changer. He delivered a clean, modern web app ahead of schedule and exceeded expectations.",
-    avatar: "https://i.pravatar.cc/150?img=1",
+    avatar: johnsonAchuk,
   },
   {
     name: "Biar Thon",
     role: "Co-founder, Pixelpulse",
     message:
       "His attention to detail and ability to translate ideas into a functional interface is unmatched.",
-    avatar: "https://i.pravatar.cc/150?img=2",
+    avatar: biarThon,
   },
   {
-    name: "Sarah Lee",
-    role: "Founder, CreativeLabs",
+    name: "Ogoo Tom",
+    role: "ICT Teacher, Darling Wisdom Academy Secondary School",
     message:
-      "The portfolio site he built perfectly reflects our brand. Highly recommended for anyone looking for a professional developer.",
-    avatar: "https://i.pravatar.cc/150?img=3",
-  },
-   {
-    name: "Sarah Lee",
-    role: "Founder, CreativeLabs",
-    message:
-      "The portfolio site he built perfectly reflects our brand. Highly recommended for anyone looking for a professional developer.",
-    avatar: "https://i.pravatar.cc/150?img=3",
-  },
-   {
-    name: "Sarah Lee",
-    role: "Founder, CreativeLabs",
-    message:
-      "The portfolio site he built perfectly reflects our brand. Highly recommended for anyone looking for a professional developer.",
-    avatar: "https://i.pravatar.cc/150?img=3",
+      "I had the privilege of teaching Tut during his school years, and I have witnessed his dedication, discipline, and passion for technology grow over time. His ability to design and build a professional portfolio website demonstrates both creativity and strong technical skill. I am proud to see him applying what he learned and confidently stepping into the field of web development.",
+    avatar: ogooTom,
   },
 ];
 
@@ -57,11 +49,11 @@ export default function Testimonials() {
           What People <span className="text-amber-400">Say</span>
         </h2>
         <p className="text-gray-400 mb-12">
-          Here’s what clients and colleagues have said about working with me.
+          Here’s what clients, colleagues, and mentors have said about working with me.
         </p>
 
         <div className="relative">
-          {/* Testimonials */}
+          {/* Testimonials Card */}
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -80,13 +72,11 @@ export default function Testimonials() {
               <h3 className="text-white font-semibold text-lg">
                 {testimonials[index].name}
               </h3>
-              <span className="text-gray-400 text-sm">
-                {testimonials[index].role}
-              </span>
+              <span className="text-gray-400 text-sm">{testimonials[index].role}</span>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Arrows */}
           <button
             onClick={prevTestimonial}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-amber-400 text-black p-3 rounded-full hover:scale-110 transition"
@@ -101,7 +91,7 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Dots */}
+        {/* Dots Navigation */}
         <div className="flex justify-center mt-6 space-x-2">
           {testimonials.map((_, i) => (
             <span
