@@ -34,7 +34,8 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, []
+);
 
   return (
     <nav className="fixed w-full bg-black bg-opacity-90 backdrop-blur-md z-50 shadow-lg py-4 border-b border-green-200">

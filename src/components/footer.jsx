@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub, FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -50,8 +50,8 @@ export default function Footer() {
           <p className="text-gray-400">
             PT Gatluak - TechCare<br />
             Juba, South Sudan<br />
-            Email: <a href="mailto:ptgatluakb@gmail.com" className="hover:text-amber-400 transition">ptgatluakb@gmail.com</a><br />
-            Phone: <a href="tel:+211900000000" className="hover:text-amber-400 transition">+211 923 482 721</a>
+            Email: <a href="mailto:ptgatluakb@gmail.com" target ="_blank" className="hover:text-amber-400 transition">ptgatluakb@gmail.com</a><br />
+            Phone: <a href="tel:+211923482721" className="hover:text-amber-400 transition">+211 923 482 721</a>
           </p>
         </div>
 
@@ -59,16 +59,16 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-bold text-amber-400 mb-4">Social Media</h3>
           <div className="flex space-x-4">
-            <a href="https://facebook.com/yourfacebook" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
+            <a href="https://www.facebook.com/profile.php?id=61583085802467" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
               <FaFacebookF />
             </a>
-            <a href="https://twitter.com/yourtwitter" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
-              <FaTwitter />
+            <a href="https://tiktok.com/@ptgatluakb" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
+              <FaTiktok />
             </a>
-            <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
+            <a href="https://linkedin.com/in/Pt gatluak Bol" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
               <FaLinkedinIn />
             </a>
-            <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
+            <a href="https://github.com/tutgatluak-bol" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition text-2xl">
               <FaGithub />
             </a>
           </div>

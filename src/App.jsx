@@ -5,9 +5,9 @@ import About from "./components/About.jsx";
 import Skills from "./components/Skills.jsx";
 import Projects from "./components/Projects.jsx";
 import Frequently from "./components/Frequently.jsx"; 
-import ContactForm from "./components/ContactForm.jsx";  // ✅ Corrected
+import ContactForm from "./components/ContactForm.jsx"; 
 import Footer from "./components/footer.jsx";  
-import Testimonials from "./components/testimonials.jsx";  
+import Testimonials from "./components/Testimonials.jsx";  
 
 const App = () => {
   return (

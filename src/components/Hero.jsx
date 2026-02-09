@@ -7,7 +7,7 @@ import ProfilePic from "../assets/icons/profile-pic.jpg";
 
 export default function Home() {
   return (
-    <section className="relative bg-black text-white min-h-screen flex items-center px-6 pt-30">
+    <section id="Home" className="relative bg-black text-white min-h-screen flex items-center px-6 pt-30">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
         {/* Left Content */}
