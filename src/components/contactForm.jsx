@@ -35,7 +35,9 @@ export default function ContactForm() {
     setLoading(true);
 
     try {
-      await emailjs.send(
+      const now = new Date();
+
+      const response = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
@@ -43,11 +45,18 @@ export default function ContactForm() {
           email: formData.email,
           service: formData.service,
           message: formData.message,
+          time: now.toLocaleString("en-US", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }), // ✅ added time
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
+      console.log("Email sent:", response.status);
+
       setSuccess(true);
+
       setFormData({
         name: "",
         email: "",
@@ -57,62 +66,66 @@ export default function ContactForm() {
 
       setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send message.");
+      console.error("EmailJS Error:", error.text || error);
+      alert("Message failed to send. Check console.");
     }
 
     setLoading(false);
   };
 
+  // console.log(import.meta.env);
+
   return (
     <section
       id="contact"
-      className="relative bg-black text-white py-24 px-6 overflow-hidden"
+      className="relative bg-black text-white py-28 px-6 overflow-hidden"
     >
       {/* background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.10),transparent_60%)]" />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto relative z-10">
 
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
             Contact <span className="text-amber-400">Me</span>
           </h2>
 
-          <p className="text-white/60 mt-4">
-            Let’s discuss your project and build something impactful together.
+          <p className="text-white/60 mt-4 max-w-xl mx-auto">
+            Tell me about your idea — I’m building scalable web applications
+            and would love to work with you.
           </p>
         </motion.div>
 
         {/* FORM */}
         <motion.form
           onSubmit={handleSubmit}
-          className="space-y-5"
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="space-y-6"
         >
 
+          {/* SUCCESS MESSAGE */}
           <AnimatePresence>
             {success && (
               <motion.div
-                initial={{ opacity: 0, y: -15 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                className="bg-amber-400 text-black px-6 py-2 rounded-xl font-semibold text-center"
+                exit={{ opacity: 0, y: -10 }}
+                className="bg-amber-400 text-black text-center font-semibold py-2 rounded-xl"
               >
-                Message sent successfully!
+                Message sent successfully 🚀
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* GRID: 2 COLUMNS */}
+          {/* GRID */}
           <div className="grid md:grid-cols-2 gap-6">
 
             {/* LEFT COLUMN */}
@@ -148,41 +161,38 @@ export default function ContactForm() {
                 className="w-full px-5 py-3 rounded-xl bg-black border border-white/10
                            focus:border-amber-400 outline-none transition text-white"
               >
-                <option value="">Select a Service</option>
-                {services.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
+                <option value="">Select Service</option>
+                {services.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
                   </option>
                 ))}
               </select>
             </div>
 
             {/* RIGHT COLUMN */}
-            <div>
-              <textarea
-                name="message"
-                required
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Describe your project, idea, or requirements..."
-                rows={9}
-                className="w-full h-full px-5 py-3 rounded-xl bg-white/5 border border-white/10
-                           focus:border-amber-400 outline-none transition resize-none"
-              />
-            </div>
+            <textarea
+              name="message"
+              required
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Describe your project..."
+              rows={9}
+              className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10
+                         focus:border-amber-400 outline-none transition resize-none"
+            />
           </div>
 
           {/* BUTTON */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-400 text-black font-semibold px-6 py-3 rounded-xl
-                       hover:scale-[1.02] active:scale-95 transition-transform
-                       disabled:opacity-50"
+            className="w-full bg-amber-400 text-black font-semibold py-3 rounded-xl
+                       hover:scale-[1.02] active:scale-95 transition
+                       disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
-
         </motion.form>
       </div>
     </section>
