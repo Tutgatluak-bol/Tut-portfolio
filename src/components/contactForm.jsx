@@ -6,108 +6,183 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    service: "",
     message: "",
   });
-  const [errors, setErrors] = useState({});
+
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const services = [
+    "Web Development",
+    "Full-Stack Application",
+    "Frontend UI Design",
+    "Backend API Development",
+    "Bug Fixing / Debugging",
+    "Consultation",
+    "Other",
+  ];
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
     setLoading(true);
 
-    emailjs
-      .send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
           message: formData.message,
         },
-        "YOUR_PUBLIC_KEY"
-      )
-      .then(() => {
-        setSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSuccess(false), 3000);
-      })
-      .catch(() => {
-        alert("Failed to send message. Try again.");
-      })
-      .finally(() => setLoading(false));
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+
+      setTimeout(() => setSuccess(false), 3000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message.");
+    }
+
+    setLoading(false);
   };
 
   return (
-    <section id="contact" className="bg-black text-white py-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        <motion.form onSubmit={handleSubmit} className="space-y-6 relative">
+    <section
+      id="contact"
+      className="relative bg-black text-white py-24 px-6 overflow-hidden"
+    >
+      {/* background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_60%)]" />
+
+      <div className="max-w-4xl mx-auto relative z-10">
+
+        {/* HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Contact <span className="text-amber-400">Me</span>
+          </h2>
+
+          <p className="text-white/60 mt-4">
+            Let’s discuss your project and build something impactful together.
+          </p>
+        </motion.div>
+
+        {/* FORM */}
+        <motion.form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+
           <AnimatePresence>
             {success && (
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="absolute -top-16 left-1/2 -translate-x-1/2 bg-amber-400 text-black px-6 py-2 rounded-2xl font-semibold"
+                exit={{ opacity: 0, y: -15 }}
+                className="bg-amber-400 text-black px-6 py-2 rounded-xl font-semibold text-center"
               >
                 Message sent successfully!
               </motion.div>
             )}
           </AnimatePresence>
 
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="w-full px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800"
-          />
+          {/* GRID: 2 COLUMNS */}
+          <div className="grid md:grid-cols-2 gap-6">
 
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email"
-            className="w-full px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800"
-          />
+            {/* LEFT COLUMN */}
+            <div className="space-y-4">
 
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message"
-            rows={6}
-            className="w-full px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 resize-none"
-          />
+              <input
+                type="text"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10
+                           focus:border-amber-400 outline-none transition"
+              />
 
+              <input
+                type="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10
+                           focus:border-amber-400 outline-none transition"
+              />
+
+              <select
+                name="service"
+                required
+                value={formData.service}
+                onChange={handleChange}
+                className="w-full px-5 py-3 rounded-xl bg-black border border-white/10
+                           focus:border-amber-400 outline-none transition text-white"
+              >
+                <option value="">Select a Service</option>
+                {services.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div>
+              <textarea
+                name="message"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Describe your project, idea, or requirements..."
+                rows={9}
+                className="w-full h-full px-5 py-3 rounded-xl bg-white/5 border border-white/10
+                           focus:border-amber-400 outline-none transition resize-none"
+              />
+            </div>
+          </div>
+
+          {/* BUTTON */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-400 text-black font-semibold px-6 py-3 rounded-2xl hover:scale-105 transition-transform"
+            className="w-full bg-amber-400 text-black font-semibold px-6 py-3 rounded-xl
+                       hover:scale-[1.02] active:scale-95 transition-transform
+                       disabled:opacity-50"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
+
         </motion.form>
       </div>
     </section>

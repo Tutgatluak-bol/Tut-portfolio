@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
+import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import Skills from "./components/Skills.jsx";
 import Projects from "./components/Projects.jsx";
 import Frequently from "./components/Frequently.jsx"; 
-import ContactForm from "./components/ContactForm.jsx"; 
+import ContactForm from "./components/contactForm.jsx"; 
 import Footer from "./components/footer.jsx";  
 import Testimonials from "./components/Testimonials.jsx";  
 
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="overflow-x-hidden">
       <Navbar />
-      <Hero />
+      <Home />
       <About />
       <Skills />
       <Projects />

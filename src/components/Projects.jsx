@@ -2,109 +2,142 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 
-// Sample projects data
 const projects = [
   {
-    title: "Portfolio Website",
-    desc: "My personal portfolio built with React, Tailwind, and Framer Motion.",
+    title: "JobBoard Platform (CEO Project)",
+    desc: "A full-stack job marketplace platform where employers post jobs and candidates apply. Built with React, Node.js, Express, MySQL, and real-time features.",
+    tech: ["React", "Node.js", "Express", "MySQL", "Socket.io"],
+    github: "https://github.com/Tutgatluak-bol/jobboard",
+    demo: "#",
+    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
+    highlight: true,
+  },
+  {
+    title: "Personal Portfolio Website",
+    desc: "A modern developer portfolio showcasing projects, skills, and experience with smooth animations and responsive design.",
     tech: ["React", "Tailwind", "Framer Motion"],
-    github: "https://github.com/username/portfolio",
+    github: "https://github.com/username/personal-portfolio",
     demo: "#",
-    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    title: "E-commerce App",
-    desc: "Full-stack e-commerce web app with Node.js, Express, MySQL, and React.",
-    tech: ["React", "Node.js", "Express", "MySQL"],
-    github: "https://github.com/username/ecommerce",
+    title: "Weather App",
+    desc: "A real-time weather application fetching live data from APIs with dynamic UI updates based on location.",
+    tech: ["React", "API", "Tailwind"],
+    github: "https://github.com/username/weather-app",
     demo: "#",
-    img: "https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    title: "Blog Platform",
-    desc: "A responsive blogging platform with user authentication and CRUD features.",
-    tech: ["React", "Node.js", "MongoDB"],
-    github: "https://github.com/username/blog-platform",
-    demo: "#",
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-black text-white py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+    <section
+      id="projects"
+      className="relative bg-black text-white py-24 px-6 overflow-hidden"
+    >
+      {/* background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_60%)]" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             My <span className="text-amber-400">Projects</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            A selection of projects showcasing my skills in front-end and
-            full-stack development.
+
+          <p className="text-white/60 max-w-2xl mx-auto mt-4 leading-relaxed">
+            A selection of real-world applications demonstrating full-stack
+            development, API integration, and scalable system design.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* GRID */}
         <div className="grid md:grid-cols-3 gap-8">
+
           {projects.map((project, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
+              key={project.title}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className={`group rounded-2xl overflow-hidden border transition-all duration-300
+                ${
+                  project.highlight
+                    ? "border-amber-400/40 shadow-[0_0_35px_rgba(251,191,36,0.15)]"
+                    : "border-white/10"
+                }
+                bg-white/5 backdrop-blur-md
+                hover:-translate-y-2 hover:border-amber-400/50`}
             >
-              <img
-                src={project.img}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="text-gray-400 text-sm">{project.desc}</p>
+              {/* IMAGE */}
+              <div className="relative overflow-hidden h-52">
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              </div>
 
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {project.tech.map((tech, idx) => (
+              {/* CONTENT */}
+              <div className="p-6 space-y-4">
+
+                <h3 className="text-lg font-semibold">
+                  {project.title}
+                </h3>
+
+                <p className="text-white/60 text-sm leading-relaxed">
+                  {project.desc}
+                </p>
+
+                {/* TECH */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
                     <span
-                      key={idx}
-                      className="px-2 py-1 bg-amber-400 text-black text-xs rounded-full"
+                      key={tech}
+                      className="text-xs px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex gap-4 pt-4">
+                {/* LINKS */}
+                <div className="flex gap-5 pt-3 text-sm">
+
                   <a
                     href={project.github}
-                    target="https://github.com/Tutgatluak-bol/"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-gray-300 hover:text-amber-400 transition-colors"
+                    className="flex items-center gap-2 text-white/60 hover:text-amber-400 transition-colors"
                   >
-                    <Github size={18} /> Code
+                    <Github size={18} />
+                    Code
                   </a>
+
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-gray-300 hover:text-amber-400 transition-colors"
+                    className="flex items-center gap-2 text-white/60 hover:text-amber-400 transition-colors"
                   >
-                    <ExternalLink size={18} /> Demo
+                    <ExternalLink size={18} />
+                    Live
                   </a>
                 </div>
               </div>
             </motion.div>
           ))}
+
         </div>
       </div>
     </section>

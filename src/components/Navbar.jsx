@@ -3,92 +3,109 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("#home");
 
   const links = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Frequently Asked Questions", href: "#faq" },
+    { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
 
-  // Update active section on scroll
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 200; // Offset for navbar height
+    const sections = links.map((l) => document.querySelector(l.href));
 
-      for (let link of links) {
-        const section = document.querySelector(link.href);
-        if (section) {
-          const top = section.offsetTop;
-          const bottom = top + section.offsetHeight;
-          if (scrollPos >= top && scrollPos < bottom) {
-            setActiveSection(link.name.toLowerCase());
-            break;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
           }
-        }
-      }
-    };
+        });
+      },
+      { root: null, threshold: 0.6 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []
-);
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <nav className="fixed w-full bg-black bg-opacity-90 backdrop-blur-md z-50 shadow-lg py-4 border-b border-green-200">
+    <nav className="fixed w-full z-50 bg-black/70 backdrop-blur-lg border-b border-white/10 shadow-lg">
+
+      {/* 🔥 subtle separator line (NEW) */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
+
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo / Name */}
-        <div id="Hero" className="text-2xl font-bold text-amber-400">Pt Gatluak</div>
+
+        {/* Logo */}
+        <div className="text-2xl font-bold text-amber-400 hover:scale-105 transition-transform cursor-pointer">
+          Pt Gatluak
+        </div>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex space-x-8 text-white font-semibold">
+        <ul className="hidden md:flex items-center space-x-6 text-white font-medium">
           {links.map((link) => (
-            <li key={link.name}>
+            <li key={link.href}>
               <a
                 href={link.href}
-                className={`transition-colors hover:text-amber-400 ${
-                  activeSection === link.name.toLowerCase()
-                    ? "text-amber-400"
-                    : "text-white"
-                }`}
+                className={`relative px-2 py-1 transition-all duration-300
+                  hover:text-amber-400
+                  ${
+                    activeSection === link.href
+                      ? "text-amber-400"
+                      : "text-white/80"
+                  }`}
               >
                 {link.name}
+
+                <span
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-amber-400 transition-all duration-300
+                    ${activeSection === link.href ? "w-full" : "w-0"}`}
+                />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} color="white" /> : <Menu size={28} color="white" />}
-          </button>
-        </div>
+        {/* Mobile Button */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <ul className="md:hidden bg-black bg-opacity-95 px-6 py-4 flex flex-col space-y-4 text-white font-semibold">
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-black/90 backdrop-blur-lg border-t border-white/10
+        ${isOpen ? "max-h-96 py-4" : "max-h-0"}`}
+      >
+        <ul className="flex flex-col space-y-4 px-6 text-white font-medium">
           {links.map((link) => (
-            <li key={link.name}>
+            <li key={link.href}>
               <a
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`transition-colors hover:text-amber-400 ${
-                  activeSection === link.name.toLowerCase()
-                    ? "text-amber-400"
-                    : "text-white"
-                }`}
+                className={`block py-2 transition-colors
+                  ${
+                    activeSection === link.href
+                      ? "text-amber-400"
+                      : "text-white/80"
+                  }`}
               >
                 {link.name}
               </a>
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </nav>
   );
 }
