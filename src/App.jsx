@@ -9,6 +9,8 @@ import ContactForm from "./components/contactForm.jsx";
 import Footer from "./components/footer.jsx";  
 import Testimonials from "./components/Testimonials.jsx";  
 
+
+
 const App = () => {
   return (
     <div className="overflow-x-hidden">
@@ -21,6 +23,7 @@ const App = () => {
       <Testimonials />
       <ContactForm />
       <Footer />
+  
     </div>
   );
 };

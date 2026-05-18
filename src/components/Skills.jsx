@@ -1,19 +1,19 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from "react"
+import { motion } from "framer-motion"
 
-import ReactLogo from "../assets/icons/react.svg";
-import JsLogo from "../assets/icons/javascript.svg";
-import NodeLogo from "../assets/icons/nodedotjs.svg";
-import Mysql from "../assets/icons/mysql.svg";
-import Tailwind from "../assets/icons/tailwind.svg";
+import ReactLogo from "../assets/icons/react.svg"
+import JsLogo from "../assets/icons/javascript.svg"
+import NodeLogo from "../assets/icons/nodedotjs.svg"
+import Mysql from "../assets/icons/mysql.svg"
+import Tailwind from "../assets/icons/tailwind.svg"
 
 const skills = [
-  { name: "React", icon: ReactLogo, level: 90 },
-  { name: "JavaScript", icon: JsLogo, level: 85 },
+  { name: "React", icon: ReactLogo, level: 60 },
+  { name: "JavaScript", icon: JsLogo, level: 75 },
   { name: "Tailwind CSS", icon: Tailwind, level: 88 },
   { name: "Node.js", icon: NodeLogo, level: 80 },
   { name: "MySQL", icon: Mysql, level: 75 },
-];
+]
 
 export default function Skills() {
   return (
@@ -32,88 +32,131 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
             My <span className="text-amber-400">Skills</span>
           </h2>
 
-          <p className="text-white/60 mt-5 max-w-2xl mx-auto leading-relaxed">
-            Technologies and tools I use to build scalable, modern, and
-            high-performance web applications.
+          <p className="text-white/60 mt-6 max-w-2xl mx-auto leading-relaxed">
+            Technologies I use to build scalable full-stack applications,
+            APIs, and modern user interfaces.
           </p>
         </motion.div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 place-items-center">
+        {/* MAIN LAYOUT */}
+        <div className="grid md:grid-cols-2 gap-16 items-center">
 
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 25, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.55,
-                delay: i * 0.07,
-                ease: "easeOut",
-              }}
-              className="group w-full max-w-[220px]"
-            >
-              {/* CARD */}
-              <div
-                className="relative flex flex-col items-center justify-center gap-5
-                           rounded-3xl py-10 px-6
-                           bg-white/5 border border-white/10
-                           backdrop-blur-xl
-                           transition-all duration-300
-                           hover:-translate-y-2
-                           hover:border-amber-400/50
-                           hover:shadow-[0_0_40px_rgba(251,191,36,0.20)]"
-              >
-                {/* glow layer */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-amber-400/5" />
+          {/* LEFT INFO PANEL */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
 
-                {/* ICON */}
-                <div
-                  className="relative w-16 h-16 flex items-center justify-center
-                             rounded-2xl bg-black/40 border border-white/10
-                             group-hover:border-amber-400/40
-                             transition-all duration-300"
-                >
-                  <img
-                    src={skill.icon}
-                    alt={skill.name}
-                    className="w-11 h-11 object-contain group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
+            <h3 className="text-3xl font-semibold text-amber-400">
+              What I Work With
+            </h3>
 
-                {/* NAME */}
-                <span className="text-base md:text-lg font-medium text-white/70 group-hover:text-amber-400 transition-colors">
-                  {skill.name}
+            <p className="text-white/60 leading-relaxed">
+              I specialize in building full-stack applications using modern
+              JavaScript technologies. My focus is on performance, clean
+              architecture, and scalable backend systems.
+            </p>
+
+            <p className="text-white/60 leading-relaxed">
+              I continuously improve my skills through real-world projects like
+              job boards, dashboards, and API-driven platforms.
+            </p>
+
+            {/* highlight box */}
+            <div className="p-5 rounded-2xl border border-white/10 bg-white/5">
+              <p className="text-sm text-white/60">
+                Focus Areas:
+              </p>
+
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="px-3 py-1 rounded-full bg-amber-400 text-black text-xs font-semibold">
+                  Frontend
                 </span>
 
-                {/* SKILL BAR */}
-                <div className="w-full space-y-2">
-                  <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className="h-full bg-amber-400 rounded-full"
+                <span className="px-3 py-1 rounded-full border border-amber-400 text-amber-400 text-xs">
+                  Backend
+                </span>
+
+                <span className="px-3 py-1 rounded-full border border-white/20 text-white/60 text-xs">
+                  APIs
+                </span>
+
+                <span className="px-3 py-1 rounded-full border border-white/20 text-white/60 text-xs">
+                  Databases
+                </span>
+              </div>
+            </div>
+
+          </motion.div>
+
+          {/* RIGHT SKILLS LIST */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+
+            {skills.map((skill, i) => (
+              <div key={skill.name} className="space-y-3">
+
+                {/* TOP ROW */}
+                <div className="flex items-center justify-between">
+
+                  <div className="flex items-center gap-3">
+
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-6 h-6"
                     />
+
+                    <span className="text-white/80 font-medium">
+                      {skill.name}
+                    </span>
+
                   </div>
 
-                  <div className="text-xs text-white/50 text-right">
+                  <span className="text-sm text-amber-400">
                     {skill.level}%
-                  </div>
+                  </span>
+
                 </div>
+
+                {/* BAR */}
+                <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 1,
+                      delay: i * 0.1,
+                      ease: "easeOut",
+                    }}
+                    className="h-full bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full"
+                  />
+
+                </div>
+
               </div>
-            </motion.div>
-          ))}
+            ))}
+
+          </motion.div>
+
         </div>
       </div>
     </section>
-  );
+  )
 }

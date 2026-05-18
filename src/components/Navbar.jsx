@@ -45,7 +45,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <div className="text-2xl font-bold text-amber-400 hover:scale-105 transition-transform cursor-pointer">
-          Pt Gatluak
+          Tut Gatluak
         </div>
 
         {/* Desktop Links */}
