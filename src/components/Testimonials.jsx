@@ -20,7 +20,7 @@ const testimonials = [
     name: "Johnson Achuk",
     role: "CEO, Pixelpulse",
     rating: 5,
-    email: "johnson@example.com",
+    email: "johnson@gmail.com",
     phone: "+211927660520",
     message:
       "Working with PT Gatluak was a game-changer. He delivered a clean, modern web app ahead of schedule and exceeded expectations.",
@@ -31,7 +31,7 @@ const testimonials = [
     name: "Biar Thon",
     role: "Co-founder, Pixelpulse",
     rating: 4,
-    email: "biar@example.com",
+    email: "biar@gmail.com",
     phone: "+211921217005",
     message:
       "His attention to detail and ability to translate ideas into a functional interface is unmatched.",
@@ -42,7 +42,7 @@ const testimonials = [
     name: "Ogoo Tom",
     role: "ICT Teacher, Darling Wisdom Academy Secondary School",
     rating: 5,
-    email: "ogootom@example.com",
+    email: "ogootom320@gmail.com",
     phone: "+211925688669",
     message:
       "I have witnessed his dedication and growth over time. His ability to build a professional portfolio shows strong technical skill.",
