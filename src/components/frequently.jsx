@@ -4,34 +4,29 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What technologies do you specialize in?",
+    question: "What technologies do you work with?",
     answer:
-      "I specialize in React, JavaScript, Node.js, Express, MySQL, and Tailwind CSS, focusing on scalable and high-performance web applications.",
+      "I work primarily with React, JavaScript, Tailwind CSS, Node.js, Express, MySQL, and REST APIs. I also use tools such as Git, GitHub, VS Code, and Postman.",
   },
   {
-    question: "Are you currently building something?",
+    question: "Are you currently building a project?",
     answer:
-      "Yes. I am currently building a full-stack JobBoard platform where employers can post jobs and applicants can apply. I am actively developing it as the CEO and lead developer, focusing on real-world scalability, authentication, and job matching features.",
+      "Yes. One of my main projects is JobBoard, a full-stack recruitment platform connecting job seekers, recruiters, and administrators. It includes authentication, job posting, applications, saved jobs, dashboards, messaging, and interview workflows.",
   },
   {
-    question: "Are you available for freelance or full-time roles?",
+    question: "Do you work on both frontend and backend?",
     answer:
-      "Yes. I am open to freelance projects, collaborations, and full-time opportunities where I can contribute to impactful and scalable digital products.",
+      "Yes. I work across the frontend and backend, building React interfaces and connecting them to Node.js, Express, MySQL, and REST APIs.",
   },
   {
-    question: "Do you build both frontend and backend systems?",
+    question: "Are you available for development opportunities?",
     answer:
-      "Absolutely. I work as a full-stack developer, building clean user interfaces while also designing secure and efficient backend APIs and databases.",
+      "I'm open to development opportunities, collaborations, freelance projects, and roles where I can continue contributing and growing as a developer.",
   },
   {
-    question: "How do you approach a new project?",
+    question: "How can I contact you?",
     answer:
-      "I start by understanding business goals, then design scalable architecture, build modular systems, and focus on performance, usability, and maintainability.",
-  },
-  {
-    question: "What makes your work different?",
-    answer:
-      "I combine engineering precision with user-focused design, ensuring applications are not only functional but also intuitive and visually refined.",
+      "You can contact me through the form in the Connect section or reach me directly by email at ptgatluakb@gmail.com | +211923482721.",
   },
 ];
 
@@ -39,87 +34,221 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndex((current) => (current === index ? null : index));
   };
 
   return (
     <section
       id="faq"
-      className="relative bg-black text-white py-24 px-6 overflow-hidden"
+      className="
+        bg-white
+        px-6
+        py-20
+        text-gray-900
+        transition-colors
+        duration-300
+        dark:bg-gray-950
+        dark:text-white
+        sm:py-24
+        lg:py-28
+      "
     >
-      {/* background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_60%)]" />
-
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="mx-auto max-w-4xl">
 
         {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Frequently Asked{" "}
-            <span className="text-amber-400">Questions</span>
+          <p
+            className="
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.25em]
+              text-[#B8952E]
+            "
+          >
+            FAQ
+          </p>
+
+          <h2
+            className="
+              mt-3
+              text-3xl
+              font-semibold
+              tracking-tight
+              text-gray-900
+              dark:text-white
+              sm:text-4xl
+            "
+          >
+            Frequently asked questions
           </h2>
 
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            Clear answers about my skills, workflow, and current projects.
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-xl
+              text-sm
+              leading-6
+              text-gray-500
+              dark:text-gray-400
+              sm:text-base
+            "
+          >
+            A few quick answers about my skills, projects, and how to get in
+            touch.
           </p>
         </motion.div>
 
-        {/* FAQ LIST */}
-        <div className="space-y-4">
-
+        {/* QUESTIONS */}
+        <div
+          className="
+            mt-12
+            divide-y
+            divide-gray-200
+            border-y
+            border-gray-200
+            dark:divide-gray-800
+            dark:border-gray-800
+          "
+        >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
               <motion.div
                 key={faq.question}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md
-                           overflow-hidden transition-all"
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                }}
               >
-
-                {/* QUESTION BUTTON */}
+                {/* QUESTION */}
                 <button
+                  type="button"
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between gap-4 p-6 text-left
-                             hover:bg-white/5 transition-colors"
                   aria-expanded={isOpen}
+                  className="
+                    group
+                    flex
+                    w-full
+                    items-center
+                    justify-between
+                    gap-6
+                    py-6
+                    text-left
+                    transition-colors
+                    duration-200
+                  "
                 >
-                  <span className="text-base md:text-lg font-medium leading-snug">
+                  <span
+                    className={`
+                      text-base
+                      font-medium
+                      transition-colors
+                      duration-200
+                      sm:text-lg
+                      ${
+                        isOpen
+                          ? "text-[#B8952E]"
+                          : "text-gray-900 group-hover:text-[#B8952E] dark:text-gray-100"
+                      }
+                    `}
+                  >
                     {faq.question}
                   </span>
 
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="text-amber-400 flex-shrink-0"
+                  {/* ICON */}
+                  <motion.span
+                    animate={{
+                      rotate: isOpen ? 180 : 0,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                    }}
+                    className={`
+                      flex
+                      h-8
+                      w-8
+                      flex-shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      transition-colors
+                      duration-200
+                      ${
+                        isOpen
+                          ? "border-[#D4AF37] bg-[#D4AF37] text-white"
+                          : "border-gray-200 bg-white text-gray-500 group-hover:border-[#D4AF37] group-hover:text-[#B8952E] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400"
+                      }
+                    `}
                   >
-                    <ChevronDown />
-                  </motion.div>
+                    <ChevronDown
+                      size={17}
+                      strokeWidth={1.7}
+                    />
+                  </motion.span>
                 </button>
 
                 {/* ANSWER */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
+                      initial={{
+                        height: 0,
+                        opacity: 0,
+                      }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                      }}
+                      transition={{
+                        duration: 0.25,
+                      }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-white/60 leading-relaxed text-sm md:text-base">
-                        {faq.answer}
+                      <div className="relative pb-6 pr-10">
+
+                        {/* GOLD ACCENT */}
+                        <div
+                          className="
+                            absolute
+                            left-0
+                            top-0
+                            h-full
+                            w-0.5
+                            rounded-full
+                            bg-[#D4AF37]
+                          "
+                        />
+
+                        <p
+                          className="
+                            max-w-3xl
+                            pl-4
+                            text-sm
+                            leading-6
+                            text-gray-500
+                            dark:text-gray-400
+                            sm:text-base
+                          "
+                        >
+                          {faq.answer}
+                        </p>
                       </div>
                     </motion.div>
                   )}
@@ -128,6 +257,39 @@ export default function FAQ() {
             );
           })}
         </div>
+
+        {/* CONTACT CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-10 text-center"
+        >
+          <a
+            href="#contact"
+            className="
+              inline-flex
+              items-center
+              rounded-full
+              border
+              border-[#D4AF37]
+              px-6
+              py-3
+              text-sm
+              font-medium
+              text-[#9F7F20]
+              transition-all
+              duration-300
+              hover:bg-[#D4AF37]
+              hover:text-white
+              dark:text-[#D4AF37]
+            "
+          >
+            Have another question?
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );

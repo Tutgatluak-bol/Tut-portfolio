@@ -1,32 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  ArrowUpRight,
+} from "lucide-react";
 
 const projects = [
   {
-    title: "JobBoard Platform (CEO Project)",
-    desc: "A full-stack job marketplace platform where employers post jobs and candidates apply. Built with React, Node.js, Express, MySQL, and real-time features.",
+    title: "JobBoard Platform",
+    category: "Full-Stack Application",
+    desc: "A full-stack recruitment platform connecting job seekers, recruiters, and administrators. It includes authentication, job posting, applications, saved jobs, recruiter dashboards, messaging, and interview workflows.",
     tech: ["React", "Node.js", "Express", "MySQL", "Socket.io"],
     github: "https://github.com/Tutgatluak-bol/jobboard",
-    demo: "#",
-    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
+    demo: "https://jobboard-45ke.vercel.app",
+    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
     highlight: true,
   },
   {
     title: "Personal Portfolio Website",
-    desc: "A modern developer portfolio showcasing projects, skills, and experience with smooth animations and responsive design.",
-    tech: ["React", "Tailwind", "Framer Motion"],
+    category: "Frontend Development",
+    desc: "A responsive developer portfolio designed to showcase my projects, technical skills, services, and professional work through a clean, modern, and refined user experience.",
+    tech: ["React", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/Tutgatluak-bol/Tut-portfolio",
-    demo: "#",
-    img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    title: "Weather App",
-    desc: "A real-time weather application fetching live data from APIs with dynamic UI updates based on location.",
-    tech: ["React", "API", "Tailwind"],
-    github: "https://github.com/Tutgatluak-bol/weather-app",
-    demo: "#",
-    img: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop",
+    demo: "https://tutgatluak-bol.github.io/Tut-portfolio/",
+    img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop",
+    highlight: false,
   },
 ];
 
@@ -34,111 +33,398 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-black text-white py-24 px-6 overflow-hidden"
+      className="
+        bg-white
+        px-6
+        py-24
+        text-gray-950
+        transition-colors
+        duration-300
+        dark:bg-gray-950
+        dark:text-white
+        sm:py-28
+        lg:py-32
+      "
     >
-      {/* background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.08),transparent_60%)]" />
+      <div className="mx-auto max-w-6xl">
 
-      <div className="max-w-6xl mx-auto relative z-10">
-
-        {/* HEADER */}
+        {/* =========================
+            HEADER
+        ========================= */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            My <span className="text-amber-400">Projects</span>
+          <div className="mb-6 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#C9A227]" />
+
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B08A18]">
+              Selected work
+            </p>
+          </div>
+
+          <h2
+            className="
+              text-4xl
+              font-semibold
+              tracking-[-0.04em]
+              text-gray-950
+              dark:text-white
+              sm:text-5xl
+              lg:text-6xl
+            "
+          >
+            Projects that turn
+            <span className="block text-[#B08A18]">
+              ideas into products.
+            </span>
           </h2>
 
-          <p className="text-white/60 max-w-2xl mx-auto mt-4 leading-relaxed">
-            A selection of real-world applications demonstrating full-stack
-            development, API integration, and scalable system design.
+          <p
+            className="
+              mt-7
+              max-w-2xl
+              text-base
+              leading-8
+              text-gray-500
+              dark:text-gray-400
+              sm:text-lg
+            "
+          >
+            A selection of web projects I've built across frontend,
+            backend, and full-stack development, combining thoughtful
+            interfaces with practical functionality.
           </p>
         </motion.div>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* =========================
+            PROJECT SHOWCASE
+        ========================= */}
+        <div className="mt-20">
 
-          {projects.map((project, i) => (
-            <motion.div
+          {projects.map((project, index) => (
+            <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`group rounded-2xl overflow-hidden border transition-all duration-300
+              transition={{
+                duration: 0.7,
+                delay: index * 0.1,
+              }}
+              className={`
+                group
+                py-12
+                sm:py-16
+                lg:py-20
                 ${
-                  project.highlight
-                    ? "border-amber-400/40 shadow-[0_0_35px_rgba(251,191,36,0.15)]"
-                    : "border-white/10"
+                  index !== 0
+                    ? "border-t border-gray-200 dark:border-gray-800"
+                    : ""
                 }
-                bg-white/5 backdrop-blur-md
-                hover:-translate-y-2 hover:border-amber-400/50`}
+              `}
             >
-              {/* IMAGE */}
-              <div className="relative overflow-hidden h-52">
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              </div>
+              <div
+                className={`
+                  grid items-center gap-10
+                  lg:grid-cols-2
+                  lg:gap-16
+                  ${
+                    index % 2 !== 0
+                      ? "lg:[&>div:first-child]:order-2"
+                      : ""
+                  }
+                `}
+              >
 
-              {/* CONTENT */}
-              <div className="p-6 space-y-4">
+                {/* =========================
+                    IMAGE
+                ========================= */}
+                <div
+                  className="
+                    relative
+                    overflow-hidden
+                    rounded-[2rem]
+                    bg-gray-100
+                    dark:bg-gray-900
+                  "
+                >
 
-                <h3 className="text-lg font-semibold">
-                  {project.title}
-                </h3>
+                  <div className="aspect-[16/10]">
+                    <img
+                      src={project.img}
+                      alt={project.title}
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition-transform
+                        duration-700
+                        ease-out
+                        group-hover:scale-[1.035]
+                      "
+                    />
+                  </div>
 
-                <p className="text-white/60 text-sm leading-relaxed">
-                  {project.desc}
-                </p>
+                  {/* Subtle overlay */}
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute inset-0
+                      bg-gradient-to-t
+                      from-black/20
+                      via-transparent
+                      to-transparent
+                    "
+                  />
 
-                {/* TECH */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20"
+                  {/* Featured */}
+                  {project.highlight && (
+                    <div
+                      className="
+                        absolute
+                        left-5
+                        top-5
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-full
+                        bg-white/95
+                        px-4
+                        py-2
+                        text-xs
+                        font-semibold
+                        text-gray-900
+                        shadow-sm
+                        backdrop-blur
+                        dark:bg-gray-900/95
+                        dark:text-white
+                      "
                     >
-                      {tech}
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C9A227]" />
+                      Featured project
+                    </div>
+                  )}
+                </div>
+
+                {/* =========================
+                    CONTENT
+                ========================= */}
+                <div>
+
+                  {/* Category */}
+                  <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-[#C9A227]" />
+
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#B08A18]">
+                      {project.category}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="
+                      mt-6
+                      text-3xl
+                      font-semibold
+                      tracking-[-0.035em]
+                      text-gray-950
+                      transition-colors
+                      duration-300
+                      group-hover:text-[#B08A18]
+                      dark:text-white
+                      sm:text-4xl
+                    "
+                  >
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    className="
+                      mt-5
+                      max-w-xl
+                      text-sm
+                      leading-7
+                      text-gray-500
+                      dark:text-gray-400
+                      sm:text-base
+                    "
+                  >
+                    {project.desc}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="
+                          text-xs
+                          font-medium
+                          text-gray-500
+                          dark:text-gray-400
+                          before:mr-2
+                          before:text-[#C9A227]
+                          before:content-['•']
+                        "
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="mt-9 flex flex-wrap items-center gap-6">
+
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex
+                        items-center
+                        gap-2
+                        text-sm
+                        font-semibold
+                        text-gray-900
+                        transition-colors
+                        duration-300
+                        hover:text-[#B08A18]
+                        dark:text-gray-200
+                      "
+                    >
+                      <Github
+                        size={17}
+                        strokeWidth={1.8}
+                      />
+                      View code
+                    </a>
+
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex
+                        items-center
+                        gap-2
+                        text-sm
+                        font-semibold
+                        text-gray-900
+                        transition-colors
+                        duration-300
+                        hover:text-[#B08A18]
+                        dark:text-gray-200
+                      "
+                    >
+                      Live project
+                      <ExternalLink
+                        size={16}
+                        strokeWidth={1.8}
+                      />
+                    </a>
+
+                    {/* Circular arrow */}
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title}`}
+                      className="
+                        ml-auto
+                        flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-gray-200
+                        text-gray-600
+                        transition-all
+                        duration-300
+                        group-hover:border-[#C9A227]
+                        group-hover:bg-[#C9A227]
+                        group-hover:text-white
+                        dark:border-gray-700
+                        dark:text-gray-300
+                      "
+                    >
+                      <ArrowUpRight
+                        size={12}
+                        strokeWidth={1.7}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:translate-x-0.5
+                          group-hover:-translate-y-0.5
+                        "
+                      />
+                    </a>
+
+                  </div>
                 </div>
 
-                {/* LINKS */}
-                <div className="flex gap-5 pt-3 text-sm">
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/60 hover:text-amber-400 transition-colors"
-                  >
-                    <Github size={18} />
-                    Code
-                  </a>
-
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/60 hover:text-amber-400 transition-colors"
-                  >
-                    <ExternalLink size={18} />
-                    Live
-                  </a>
-                </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
 
         </div>
+
+        {/* =========================
+            GITHUB CTA
+        ========================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="
+            border-t
+            border-gray-200
+            pt-12
+            dark:border-gray-800
+          "
+        >
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+
+            <a
+              href="https://github.com/Tutgatluak-bol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-flex
+                w-fit
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-gray-300
+                px-6
+                py-3
+                text-sm
+                font-semibold
+                text-gray-900
+                transition-all
+                duration-300
+                hover:border-[#C9A227]
+                hover:bg-[#C9A227]
+                hover:text-white
+                dark:border-gray-700
+                dark:text-gray-200
+              "
+            >
+              View GitHub
+              <ArrowUpRight size={17} />
+            </a>
+
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -1,222 +1,664 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Code2, Globe, Rocket, User } from "lucide-react"
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Code2,
+  GraduationCap,
+  FolderKanban,
+  Wrench,
+  ArrowUpRight,
+} from "lucide-react";
 
-import Aboutpic from "../assets/icons/Aboutpic.jpg"
+import Aboutpic from "../assets/icons/Aboutpic.jpg";
 
-const skills = [
+const aboutCards = [
   {
-    icon: <Code2 size={26} />,
-    title: "Clean Code",
-    desc: "Maintainable, scalable, and readable code using modern best practices.",
+    icon: Code2,
+    title: "Languages",
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express",
+    ],
   },
   {
-    icon: <Globe size={26} />,
-    title: "Responsive Design",
-    desc: "Interfaces optimized for all devices and screen sizes.",
+    icon: GraduationCap,
+    title: "Education",
+    items: [
+      "ICT / Computer Science background",
+      "Continuous self-learning",
+      "Practical project-based development",
+    ],
   },
   {
-    icon: <Rocket size={26} />,
-    title: "Performance",
-    desc: "Fast-loading, optimized, and efficient web applications.",
+    icon: FolderKanban,
+    title: "Projects",
+    items: [
+      "JobBoard",
+      "Personal Portfolio",
+    ],
   },
   {
-    icon: <User size={26} />,
-    title: "User Experience",
-    desc: "Designing intuitive systems focused on real user needs.",
+    icon: Wrench,
+    title: "Tools I use",
+    items: [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman",
+      "MySQL Workbench",
+    ],
   },
-]
+];
 
-export default function About({ activeSection }) {
-  const isActive = activeSection === "#about"
-
+export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-black text-white py-28 px-6 overflow-hidden"
+      className="
+        relative
+        overflow-hidden
+        bg-white
+        px-6
+        py-24
+        text-gray-900
+        transition-colors
+        duration-300
+
+        dark:bg-gray-950
+        dark:text-white
+
+        sm:py-28
+        lg:py-32
+      "
     >
-      {/* background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,191,36,0.10),transparent_60%)]" />
+      {/* ==================================================
+          DECORATIVE BACKGROUND
+      ================================================== */}
 
-      <div className="max-w-6xl mx-auto space-y-24 relative z-10">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-32
+          top-20
+          h-72
+          w-72
+          rounded-full
+          bg-[#D4AF37]/5
+          blur-3xl
+        "
+      />
 
-        {/* HEADER */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-32
+          bottom-20
+          h-72
+          w-72
+          rounded-full
+          bg-[#D4AF37]/5
+          blur-3xl
+        "
+      />
+
+      <div className="relative mx-auto max-w-7xl">
+
+        {/* ==================================================
+            SECTION HEADER
+        ================================================== */}
+
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto"
+          className="mx-auto max-w-2xl text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            About <span className="text-amber-400">Me</span>
-          </h1>
-
-          {/* animated underline */}
-          <div className="flex justify-center mt-6">
-            <motion.div
-              initial={{ width: 0, opacity: 0 }}
-              animate={{
-                width: isActive ? 160 : 0,
-                opacity: isActive ? 1 : 0,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="h-[3px] bg-amber-400 rounded-full"
-            />
-          </div>
-
-          <p className="text-white/60 mt-6 leading-relaxed text-lg">
-            Full-stack developer focused on building fast, scalable, and
-            user-friendly digital experiences that solve real-world problems.
+          <p
+            className="
+              text-sm
+              font-semibold
+              uppercase
+              tracking-[0.25em]
+              text-[#D4AF37]
+            "
+          >
+            About me
           </p>
-        </motion.div>
 
-        {/* BIO SECTION */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <h2
+            className="
+              mt-3
+              text-4xl
+              font-bold
+              tracking-tight
+              text-gray-900
 
-          {/* IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative group"
+              sm:text-5xl
+
+              dark:text-white
+            "
           >
-            {/* glow */}
-            <div className="absolute -inset-3 bg-amber-400/20 blur-3xl rounded-3xl opacity-60 group-hover:opacity-80 transition" />
-
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-
-              <img
-                src={Aboutpic}
-                alt="Developer"
-                className="w-full h-[460px] object-cover group-hover:scale-105 transition duration-500"
-              />
-
-              {/* overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-amber-400/10" />
-
-            </div>
-          </motion.div>
-
-          {/* TEXT */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl font-semibold text-amber-400">
-              Who I Am
-            </h2>
-
-            <p className="text-white/60 leading-relaxed">
-              I build modern full-stack applications using React, Node.js,
-              Express, and MySQL, with a focus on clean architecture, scalable
-              backend systems, and intuitive UI design.
-            </p>
-
-            <p className="text-white/60 leading-relaxed">
-              I enjoy solving real-world problems through software engineering,
-              improving user experience, and building systems that actually
-              deliver value in production environments.
-            </p>
-
-            {/* TAGS */}
-            <div className="flex flex-wrap gap-3 pt-2">
-
-              <span className="px-5 py-2 rounded-xl bg-amber-400 text-black font-semibold shadow-lg">
-                Full-Stack Developer
-              </span>
-
-              <span className="px-5 py-2 rounded-xl border border-amber-400 text-amber-400">
-                Problem Solver
-              </span>
-
-              <span className="px-5 py-2 rounded-xl border border-white/10 text-white/60">
-                UI/UX Focused
-              </span>
-
-            </div>
-
-            {/* CTA */}
-            <div className="pt-4">
-              <a
-                href="#contact"
-                className="inline-block px-8 py-3 bg-amber-400 text-black font-semibold rounded-xl
-                           hover:scale-105 active:scale-95 transition-transform shadow-lg"
-              >
-                Let’s Work Together
-              </a>
-            </div>
-
-          </motion.div>
-        </div>
-
-        {/* SKILLS */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-          {skills.map((skill, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative bg-white/5 border border-white/10 rounded-2xl p-6
-                         hover:border-amber-400/50 hover:bg-white/10 transition-all duration-300"
-            >
-
-              {/* glow on hover */}
-              <div className="absolute inset-0 rounded-2xl bg-amber-400/5 opacity-0 group-hover:opacity-100 transition" />
-
-              <div className="relative">
-
-                <div className="text-amber-400 mb-4 group-hover:scale-110 transition-transform">
-                  {skill.icon}
-                </div>
-
-                <h3 className="text-lg font-semibold mb-2">
-                  {skill.title}
-                </h3>
-
-                <p className="text-white/50 text-sm leading-relaxed">
-                  {skill.desc}
-                </p>
-
-              </div>
-            </motion.div>
-          ))}
-
-        </div>
-
-        {/* FINAL CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center pt-10"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Let’s Build Something Meaningful
+            A little about me
           </h2>
 
-          <p className="text-white/50 mt-4 max-w-xl mx-auto">
-            Open to opportunities, collaborations, and impactful software
-            projects that solve real problems.
-          </p>
+          <div
+            className="
+              mx-auto
+              mt-5
+              h-1
+              w-14
+              rounded-full
+              bg-[#D4AF37]
+            "
+          />
 
-          <a
-            href="#contact"
-            className="mt-6 inline-block px-8 py-3 bg-amber-400 text-black font-semibold rounded-xl
-                       hover:scale-105 active:scale-95 transition-transform shadow-lg"
+          <p
+            className="
+              mt-6
+              text-base
+              leading-7
+              text-gray-600
+              sm:text-lg
+
+              dark:text-gray-400
+            "
           >
-            Contact Me
-          </a>
+            I enjoy building practical web applications and learning
+            through real development projects.
+          </p>
         </motion.div>
+
+        {/* ==================================================
+            MAIN ABOUT CONTENT
+        ================================================== */}
+
+        <div
+          className="
+            mt-20
+            grid
+            items-center
+            gap-16
+
+            lg:grid-cols-2
+            lg:gap-20
+          "
+        >
+
+          {/* ==================================================
+              CENTERED IMAGE
+          ================================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className="
+              flex
+              justify-center
+            "
+          >
+            <div className="relative">
+
+              {/* Outer decorative ring */}
+
+              <div
+                className="
+                  absolute
+                  -inset-4
+                  rounded-full
+                  border
+                  border-[#D4AF37]/30
+                "
+              />
+
+              {/* Second decorative ring */}
+
+              <div
+                className="
+                  absolute
+                  -inset-8
+                  rounded-full
+                  border
+                  border-[#D4AF37]/10
+                "
+              />
+
+              {/* Gold glow */}
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  rounded-full
+                  bg-[#D4AF37]/20
+                  blur-2xl
+                "
+              />
+
+              {/* Image */}
+
+              <div
+                className="
+                  relative
+                  h-[300px]
+                  w-[300px]
+                  overflow-hidden
+                  rounded-full
+                  border-4
+                  border-[#D4AF37]
+                  bg-white
+                  shadow-2xl
+                  shadow-[#D4AF37]/20
+
+                  sm:h-[380px]
+                  sm:w-[380px]
+
+                  dark:bg-gray-900
+                "
+              >
+                <img
+                  src={Aboutpic}
+                  alt="Tut Gatluak"
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                    object-center
+                    transition-transform
+                    duration-700
+                    hover:scale-105
+                  "
+                />
+              </div>
+
+              {/* Bottom focus badge */}
+
+              <div
+                className="
+                  absolute
+                  -bottom-6
+                  left-1/2
+                  -translate-x-1/2
+                  whitespace-nowrap
+                  rounded-full
+                  border
+                  border-[#D4AF37]/40
+                  bg-white
+                  px-6
+                  py-3
+                  shadow-xl
+                  shadow-black/5
+
+                  dark:bg-gray-900
+                  dark:shadow-black/20
+                "
+              >
+                <p
+                  className="
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-wider
+                    text-[#D4AF37]
+                  "
+                >
+                  Focus
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    text-sm
+                    font-semibold
+                    text-gray-900
+
+                    dark:text-white
+                  "
+                >
+                  Building for the web
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ==================================================
+              ABOUT TEXT
+          ================================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className="max-w-2xl"
+          >
+
+            <p
+              className="
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.15em]
+                text-[#D4AF37]
+              "
+            >
+              Who I am
+            </p>
+
+            <h3
+              className="
+                mt-3
+                text-3xl
+                font-bold
+                tracking-tight
+                text-gray-900
+
+                sm:text-4xl
+
+                dark:text-white
+              "
+            >
+              Building software through real projects.
+            </h3>
+
+            <div
+              className="
+                mt-4
+                h-1
+                w-12
+                rounded-full
+                bg-[#D4AF37]
+              "
+            />
+
+            <div className="mt-6 space-y-5">
+
+              <p
+                className="
+                  leading-7
+                  text-gray-600
+
+                  dark:text-gray-400
+                "
+              >
+                I'm a Full-Stack Developer focused on building
+                responsive and practical web applications. I work
+                across the frontend and backend using React,
+                JavaScript, Node.js, Express, MySQL, and REST APIs.
+              </p>
+
+              <p
+                className="
+                  leading-7
+                  text-gray-600
+
+                  dark:text-gray-400
+                "
+              >
+                My main full-stack project is JobBoard, a recruitment
+                platform connecting job seekers, recruiters, and
+                administrators. Building it has given me practical
+                experience with authentication, APIs, databases,
+                dashboards, applications, messaging, and real
+                application workflows.
+              </p>
+
+              <p
+                className="
+                  leading-7
+                  text-gray-600
+
+                  dark:text-gray-400
+                "
+              >
+                I enjoy learning by building, solving problems through
+                code, and continuously improving the applications I
+                work on.
+              </p>
+
+            </div>
+
+            {/* ==================================================
+                SKILL TAGS
+            ================================================== */}
+
+            <div className="mt-7 flex flex-wrap gap-2.5">
+
+              {[
+                "React",
+                "JavaScript",
+                "Node.js",
+                "Express",
+                "MySQL",
+                "REST APIs",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="
+                    rounded-full
+                    border
+                    border-[#D4AF37]/40
+                    bg-[#D4AF37]/5
+                    px-4
+                    py-2
+                    text-sm
+                    font-medium
+                    text-gray-800
+                    transition-all
+                    duration-300
+                    hover:border-[#D4AF37]
+                    hover:bg-[#D4AF37]
+                    hover:text-white
+
+                    dark:text-gray-200
+                  "
+                >
+                  {skill}
+                </span>
+              ))}
+
+            </div>
+
+            {/* ==================================================
+                CTA
+            ================================================== */}
+
+            <a
+              href="#contact"
+              className="
+                mt-8
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-[#D4AF37]
+                px-7
+                py-3.5
+                text-sm
+                font-semibold
+                text-white
+                shadow-lg
+                shadow-[#D4AF37]/20
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#B8941F]
+                hover:shadow-xl
+              "
+            >
+              Let's work together
+
+              <ArrowUpRight
+                size={17}
+              />
+            </a>
+
+          </motion.div>
+        </div>
+
+        {/* ==================================================
+            INFORMATION CARDS
+        ================================================== */}
+
+        <div
+          className="
+            mt-24
+            grid
+            gap-5
+
+            sm:grid-cols-2
+            lg:grid-cols-4
+          "
+        >
+
+          {aboutCards.map((card, index) => {
+            const Icon = card.icon;
+
+            return (
+              <motion.div
+                key={card.title}
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+                className="
+                  group
+                  rounded-2xl
+                  border
+                  border-gray-200
+                  bg-white
+                  p-6
+                  shadow-sm
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-[#D4AF37]/50
+                  hover:shadow-xl
+                  hover:shadow-[#D4AF37]/10
+
+                  dark:border-gray-800
+                  dark:bg-gray-900
+                  dark:shadow-black/20
+                "
+              >
+
+                {/* Icon */}
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-[#D4AF37]/10
+                    text-[#D4AF37]
+                    transition-all
+                    duration-300
+                    group-hover:bg-[#D4AF37]
+                    group-hover:text-white
+                  "
+                >
+                  <Icon
+                    size={21}
+                    strokeWidth={1.7}
+                  />
+                </div>
+
+                {/* Title */}
+
+                <h4
+                  className="
+                    mt-5
+                    text-lg
+                    font-semibold
+                    text-gray-900
+
+                    dark:text-white
+                  "
+                >
+                  {card.title}
+                </h4>
+
+                {/* Gold divider */}
+
+                <div
+                  className="
+                    mt-3
+                    h-0.5
+                    w-8
+                    rounded-full
+                    bg-[#D4AF37]
+                  "
+                />
+
+                {/* Items */}
+
+                <div className="mt-4 space-y-2">
+
+                  {card.items.map((item) => (
+                    <p
+                      key={item}
+                      className="
+                        text-sm
+                        leading-6
+                        text-gray-500
+
+                        dark:text-gray-400
+                      "
+                    >
+                      {item}
+                    </p>
+                  ))}
+
+                </div>
+
+              </motion.div>
+            );
+          })}
+
+        </div>
 
       </div>
     </section>
-  )
+  );
 }
